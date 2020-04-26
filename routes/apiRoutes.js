@@ -40,7 +40,26 @@ module.exports = function (app) {
         let chosen = req.params.id;
         console.log(chosen);
 
-        
+        fs.readFile(path.join(__dirname, "../db/db.json"), function (error, data) {
+            if (error) {
+                return console.log(error);
+            }
+            let notes = JSON.parse(data);
+
+            console.log(notes.length);
+
+            let newNotes = notes.filter(note => note.id !== chosen);
+
+            console.log(newNotes);
+
+            fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(newNotes), function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                res.json(newNotes);
+            });
+
+        });
     })
 
 }
