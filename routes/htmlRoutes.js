@@ -1,5 +1,7 @@
+//dependency
 const path = require("path");
 
+//export
 module.exports = function(app) {
 
     app.get("/notes", function(req, res) {
