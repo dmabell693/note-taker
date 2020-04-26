@@ -13,9 +13,9 @@ module.exports = function (app) {
         newNote.id = newNote.title.replace(/\s+/g, "").toLowerCase();
         console.log(newNote.id);
 
-        fs.readFile(path.join(__dirname, "../db/db.json"), function (error, data) {
-            if (error) {
-                return console.log(error);
+        fs.readFile(path.join(__dirname, "../db/db.json"), function (err, data) {
+            if (err) {
+                console.log(err);
             }
             let notes = JSON.parse(data);
 
@@ -36,7 +36,7 @@ module.exports = function (app) {
 
     });
 
-    app.delete("/api/notes/:id", function(req, res) {
+    app.delete("/api/notes/:id", function (req, res) {
         let chosen = req.params.id;
         console.log(chosen);
 
